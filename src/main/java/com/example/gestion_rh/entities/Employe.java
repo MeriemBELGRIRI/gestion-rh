@@ -2,7 +2,9 @@ package com.example.gestion_rh.entities;
 
 import jakarta.persistence.*;
 import java.util.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Employe {
 
