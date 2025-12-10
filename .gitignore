@@ -1,0 +1,16 @@
+# === Back-end ===
+gestion-rh/target/
+gestion-rh/.mvn/wrapper/maven-wrapper.jar
+
+# === Front-end ===
+gestion-rh-frontend/node_modules/
+gestion-rh-frontend/build/
+
+# === IDE ===
+*.iml
+.idea/
+.vscode/
+.DS_Store
+
+# === Logs ===
+*.log
