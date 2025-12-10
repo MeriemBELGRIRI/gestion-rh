@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  backend:
+    image: gestion-rh
+    build:
+      context: ./backend   # chemin vers ton Dockerfile backend
+    ports:
+      - "8083:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - DB_URL=jdbc:postgresql://postgres:5432/gestionrh
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - postgres
+
+  frontend:
+    image: react-frontend
+    build:
+      context: ./frontend   # chemin vers ton Dockerfile frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://backend:8084
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: gestionrh
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
